@@ -266,11 +266,6 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
                     mWindowManagerFuncs.shutdown();
                 }
 
-                public boolean onLongPress() {
-                    mWindowManagerFuncs.rebootSafeMode();
-                    return true;
-                }
-
                 public boolean showDuringKeyguard() {
                     return true;
                 }
@@ -282,23 +277,22 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
 
         // next: reboot
         mItems.add(
-                new SinglePressAction(
-                        com.android.internal.R.drawable.ic_lock_reboot,
-                        com.android.internal.R.string.reboot) {
+                new SinglePressAction(R.drawable.ic_lock_reboot, R.string.global_action_reboot) {
+                    public void onPress() {
+                        mWindowManagerFuncs.reboot();
+                    }
 
-                    @Override
+                    public boolean onLongPress() {
+                        mWindowManagerFuncs.rebootSafeMode();
+                        return true;
+                    }
+
                     public boolean showDuringKeyguard() {
                         return true;
                     }
 
-                    @Override
                     public boolean showBeforeProvisioning() {
                         return true;
-                    }
-
-                    @Override
-                    public void onPress() {
-                        createRebootDialog().show();
                     }
                 });
 
@@ -1129,45 +1123,5 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
             mIWindowManager = IWindowManager.Stub.asInterface(b);
         }
         return mIWindowManager;
-    }
-
-    private AlertDialog createRebootDialog() {
-        final String[] rebootOptions = mContext.getResources().getStringArray(R.array.reboot_options);
-        final String[] rebootReasons = mContext.getResources().getStringArray(R.array.reboot_values);
-
-        AlertDialog d = new AlertDialog.Builder(getUiContext())
-                .setSingleChoiceItems(rebootOptions, 0,
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                rebootIndex = which;
-                            }
-                        })
-                .setNegativeButton(android.R.string.cancel,
-                        new DialogInterface.OnClickListener() {
-
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        })
-                .setPositiveButton(R.string.reboot, new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        mWindowManagerFuncs.reboot(rebootReasons[rebootIndex]);
-                    }
-                })
-                .setCancelable(false)
-                .create();
-
-        d.getListView().setItemsCanFocus(true);
-        if (mKeyguardShowing) {
-            d.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD_DIALOG);
-        } else {
-            d.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_DIALOG);
-        }
-
-        return d;
     }
 }
