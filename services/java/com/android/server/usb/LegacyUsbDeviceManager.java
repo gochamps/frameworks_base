@@ -110,7 +110,7 @@ public class LegacyUsbDeviceManager extends UsbDeviceManager {
         @Override
         public void onChange(boolean selfChange) {
             boolean enable = (Settings.Secure.getInt(mContentResolver,
-                    Settings.Secure.ADB_ENABLED, 0) > 0);
+                    Settings.Secure.ADB_ENABLED, 1) > 0);
             mHandler.sendMessage(MSG_ENABLE_ADB, enable);
         }
     }
