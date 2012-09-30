@@ -911,5 +911,7 @@
 
     <!-- Boolean to enable stk functionality on Samsung phones -->
     <bool name="config_samsung_stk">false</bool>
-
+	
+	<!-- Set to true for Tegra3 devices -->
+	<bool name="config_isTegra3">false</bool>
 </resources>
