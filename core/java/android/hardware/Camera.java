@@ -25,6 +25,7 @@ import android.graphics.SurfaceTexture;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.os.SystemProperties;
 import android.util.Log;
 import android.view.Surface;
 import android.view.SurfaceHolder;
@@ -4778,4 +4779,8 @@ public class Camera {
             return false;
         }
     };
+if (SystemProperties.get("ro.allwinner.device").equals("1")) {
+// Allwinner platform - set video screen
+    public static native int setCameraScreen(int screen);
+}
 }
