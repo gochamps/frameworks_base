@@ -88,6 +88,7 @@ import android.os.PowerManager;
 import android.os.Process;
 import android.os.RemoteException;
 import android.os.ServiceManager;
+import android.os.SystemProperties;
 import android.os.UserId;
 import android.os.SystemVibrator;
 import android.os.storage.StorageManager;
@@ -485,6 +486,13 @@ class ContextImpl extends Context {
                     IWifiP2pManager service = IWifiP2pManager.Stub.asInterface(b);
                     return new WifiP2pManager(service);
                 }});
+
+if (SystemProperties.get("ro.allwinner.device").equals("1")) {
+        registerService(DISPLAY_SERVICE, new ServiceFetcher() {
+                public Object createService(ContextImpl ctx) {
+                    return new DisplayManager();
+                }});
+}
 
         registerService(WINDOW_SERVICE, new ServiceFetcher() {
                 public Object getService(ContextImpl ctx) {
