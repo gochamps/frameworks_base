@@ -40,6 +40,7 @@ import android.view.IWindowManager;
 import android.graphics.Bitmap;
 import android.graphics.SurfaceTexture;
 import android.media.AudioManager;
+import android.content.pm.IPackageManager;
 
 import java.io.File;
 import java.io.FileDescriptor;
@@ -552,15 +553,15 @@ public class MediaPlayer
      */
     public static final boolean BYPASS_METADATA_FILTER = false;
 
-if (SystemProperties.get("ro.allwinner.device").equals("1")) {
-    /**
-    *  screen name
-    */
-    private IWindowManager   mWindowManager;
-    private IPackageManager   mPackageManager;
-    public static final int MASTER_SCREEN = 0;
-    public static final int SLAVE_SCREEN  = 1;
-}
+	if (SystemProperties.get("ro.allwinner.device").equals("1")) {
+		/**
+		*  screen name
+		*/
+		private IWindowManager   mWindowManager;
+		private IPackageManager   mPackageManager;
+		public static final int MASTER_SCREEN = 0;
+		public static final int SLAVE_SCREEN  = 1;
+	}
 
     static {
         System.loadLibrary("media_jni");
@@ -689,13 +690,13 @@ if (SystemProperties.get("ro.allwinner.device").equals("1")) {
         _setVideoSurface(surface);
 
 		if (SystemProperties.get("ro.allwinner.device").equals("1")) {
-			if(mWindowManager != null)
-			{
-				try  {
-					mWindowManager.updateRotation(true, false);
-				} catch (RemoteException e) {
-				}
-			}
+		    if(mWindowManager != null)
+		    {
+		        try	{
+		            mWindowManager.updateRotation(true, false);
+		        } catch (RemoteException e) {
+		        }
+		    }
 		}
         updateSurfaceScreenOn();
     }
@@ -2439,8 +2440,8 @@ if (SystemProperties.get("ro.allwinner.device").equals("1")) {
         return (mode == VIDEO_SCALING_MODE_SCALE_TO_FIT ||
                 mode == VIDEO_SCALING_MODE_SCALE_TO_FIT_WITH_CROPPING);
     }
-
-	public static native void setScreen(int screen) throws IllegalStateException;
+    
+    public static native void setScreen(int screen) throws IllegalStateException;
     public static native int  getScreen();
     public static native boolean  isPlayingVideo();
 
