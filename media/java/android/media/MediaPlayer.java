@@ -604,10 +604,10 @@ if (SystemProperties.get("ro.allwinner.device").equals("1")) {
          * It's easier to create it here than in C++.
          */
         native_setup(new WeakReference<MediaPlayer>(this));
-if (SystemProperties.get("ro.allwinner.device").equals("1")) {
-        mWindowManager = IWindowManager.Stub.asInterface(ServiceManager.getService("window"));
-        mPackageManager = IPackageManager.Stub.asInterface(ServiceManager.getService("package"));
-}
+		if (SystemProperties.get("ro.allwinner.device").equals("1")) {
+				mWindowManager = IWindowManager.Stub.asInterface(ServiceManager.getService("window"));
+				mPackageManager = IPackageManager.Stub.asInterface(ServiceManager.getService("package"));
+		}
     }
 
     /*
@@ -688,15 +688,15 @@ if (SystemProperties.get("ro.allwinner.device").equals("1")) {
         }
         _setVideoSurface(surface);
 
-if (SystemProperties.get("ro.allwinner.device").equals("1")) {
-        if(mWindowManager != null)
-        {
-            try  {
-                mWindowManager.updateRotation(true, false);
-            } catch (RemoteException e) {
-            }
-        }
-}
+		if (SystemProperties.get("ro.allwinner.device").equals("1")) {
+			if(mWindowManager != null)
+			{
+				try  {
+					mWindowManager.updateRotation(true, false);
+				} catch (RemoteException e) {
+				}
+			}
+		}
         updateSurfaceScreenOn();
     }
 
@@ -2440,8 +2440,7 @@ if (SystemProperties.get("ro.allwinner.device").equals("1")) {
                 mode == VIDEO_SCALING_MODE_SCALE_TO_FIT_WITH_CROPPING);
     }
 
-if (SystemProperties.get("ro.allwinner.device").equals("1")) {
-public static native void setScreen(int screen) throws IllegalStateException;
+	public static native void setScreen(int screen) throws IllegalStateException;
     public static native int  getScreen();
     public static native boolean  isPlayingVideo();
 
@@ -2960,5 +2959,4 @@ public static native void setScreen(int screen) throws IllegalStateException;
      * @return the value of the black extended.
      */
     public static native int getBlackExtend();
-}
 }
