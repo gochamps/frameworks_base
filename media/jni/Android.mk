@@ -52,6 +52,9 @@ LOCAL_C_INCLUDES += \
     external/tremor/Tremor \
     frameworks/base/core/jni \
     frameworks/av/media/libmedia \
+    frameworks/av/media/libmediaplayerservice \
+    frameworks/av/include/media \
+    frameworks/av/include \
     frameworks/av/media/libstagefright \
     frameworks/av/media/libstagefright/codecs/amrnb/enc/src \
     frameworks/av/media/libstagefright/codecs/amrnb/common \

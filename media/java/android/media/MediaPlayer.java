@@ -552,15 +552,13 @@ public class MediaPlayer
      */
     public static final boolean BYPASS_METADATA_FILTER = false;
 
-if (SystemProperties.get("ro.allwinner.device").equals("1")) {
     /**
-    *  screen name
+    *  screen name (ALLWINNER PATCH)
     */
     private IWindowManager   mWindowManager;
     private IPackageManager   mPackageManager;
     public static final int MASTER_SCREEN = 0;
     public static final int SLAVE_SCREEN  = 1;
-}
 
     static {
         System.loadLibrary("media_jni");
@@ -2440,8 +2438,7 @@ if (SystemProperties.get("ro.allwinner.device").equals("1")) {
                 mode == VIDEO_SCALING_MODE_SCALE_TO_FIT_WITH_CROPPING);
     }
 
-if (SystemProperties.get("ro.allwinner.device").equals("1")) {
-public static native void setScreen(int screen) throws IllegalStateException;
+    public static native void setScreen(int screen) throws IllegalStateException;
     public static native int  getScreen();
     public static native boolean  isPlayingVideo();
 
@@ -2960,5 +2957,5 @@ public static native void setScreen(int screen) throws IllegalStateException;
      * @return the value of the black extended.
      */
     public static native int getBlackExtend();
-}
+
 }
