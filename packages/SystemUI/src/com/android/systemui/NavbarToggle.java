@@ -1,7 +1,5 @@
 /*
- * Copyright 2011 Colin McDonough
- *
- * Modified for AOKP by Mike Wilson - Zaphod-Beeblebrox
+ * Copyright 2011 AOKP by Mike Wilson - Zaphod-Beeblebrox
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,8 +21,9 @@ import android.os.Bundle;
 import android.provider.Settings;
 
 /*
- * Torch is an LED flashlight.
+ * Toggle the NavBar
  */
+
 public class NavbarToggle extends Activity  {
   public NavbarToggle() {
     super();
