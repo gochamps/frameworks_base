@@ -1539,10 +1539,8 @@ public abstract class Context {
      * @see android.media.MediaRouter
      * @see #TELEPHONY_SERVICE
      * @see android.telephony.TelephonyManager
-if (SystemProperties.get("ro.allwinner.device").equals("1")) {
      * @see #DISPLAY_SERVICE
      * @see android.view.DisplayManager
-}
      * @see #INPUT_METHOD_SERVICE
      * @see android.view.inputmethod.InputMethodManager
      * @see #UI_MODE_SERVICE
@@ -1821,7 +1819,6 @@ if (SystemProperties.get("ro.allwinner.device").equals("1")) {
      */
     public static final String TELEPHONY_SERVICE = "phone";
 
-if (SystemProperties.get("ro.allwinner.device").equals("1")) {
      /**
      * Use with {@link #getSystemService} to retrieve a
      * {@link android.view.DisplayManager} for handling management the
@@ -1831,7 +1828,6 @@ if (SystemProperties.get("ro.allwinner.device").equals("1")) {
      * @see android.view.DisplayManager
      */
     public static final String DISPLAY_SERVICE = "display";
-}
 
     /**
      * Use with {@link #getSystemService} to retrieve a

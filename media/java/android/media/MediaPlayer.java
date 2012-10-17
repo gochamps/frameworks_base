@@ -553,15 +553,13 @@ public class MediaPlayer
      */
     public static final boolean BYPASS_METADATA_FILTER = false;
 
-	if (SystemProperties.get("ro.allwinner.device").equals("1")) {
-		/**
-		*  screen name
-		*/
-		private IWindowManager   mWindowManager;
-		private IPackageManager   mPackageManager;
-		public static final int MASTER_SCREEN = 0;
-		public static final int SLAVE_SCREEN  = 1;
-	}
+    /**
+    *  screen name (ALLWINNER PATCH)
+    */
+    private IWindowManager   mWindowManager;
+    private IPackageManager   mPackageManager;
+    public static final int MASTER_SCREEN = 0;
+    public static final int SLAVE_SCREEN  = 1;
 
     static {
         System.loadLibrary("media_jni");
@@ -2960,4 +2958,5 @@ public class MediaPlayer
      * @return the value of the black extended.
      */
     public static native int getBlackExtend();
+
 }

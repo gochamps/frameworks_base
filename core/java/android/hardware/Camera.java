@@ -4779,8 +4779,6 @@ public class Camera {
             return false;
         }
     };
-if (SystemProperties.get("ro.allwinner.device").equals("1")) {
 // Allwinner platform - set video screen
     public static native int setCameraScreen(int screen);
-}
 }

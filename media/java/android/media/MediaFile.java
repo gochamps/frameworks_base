@@ -74,16 +74,11 @@ public class MediaFile {
     
     // More video file types
     public static final int FILE_TYPE_MP2PS   = 200;
-if (SystemProperties.get("ro.allwinner.device").equals("1")) {
     public static final int FILE_TYPE_CEDARV  = 201;
-}
     private static final int FIRST_VIDEO_FILE_TYPE2 = FILE_TYPE_MP2PS;
-if (SystemProperties.get("ro.allwinner.device").equals("1")) {
-    private static final int LAST_VIDEO_FILE_TYPE2 = FILE_TYPE_CEDARV;
     private static final int FILE_TYPE_CEDARA = 300;
-else{
+    private static final int FILE_VIDEO_FILE_TYPE_AW = FILE_TYPE_CEDARV;
     private static final int LAST_VIDEO_FILE_TYPE2 = FILE_TYPE_MP2PS;
-}
 
     // Image file types
     public static final int FILE_TYPE_JPEG    = 31;
@@ -284,19 +279,17 @@ if (SystemProperties.get("ro.allwinner.device").equals("1")) {
         return ((fileType >= FIRST_AUDIO_FILE_TYPE &&
                 fileType <= LAST_AUDIO_FILE_TYPE) ||
                 (fileType >= FIRST_MIDI_FILE_TYPE &&
-if (SystemProperties.get("ro.allwinner.device").equals("1")) {
                 fileType <= LAST_MIDI_FILE_TYPE) ||
                 fileType == FILE_TYPE_CEDARA);
-} else {
-                fileType <= LAST_MIDI_FILE_TYPE));
-}
     }
 
     public static boolean isVideoFileType(int fileType) {
         return (fileType >= FIRST_VIDEO_FILE_TYPE &&
                 fileType <= LAST_VIDEO_FILE_TYPE)
             || (fileType >= FIRST_VIDEO_FILE_TYPE2 &&
-                fileType <= LAST_VIDEO_FILE_TYPE2);
+		fileType <= LAST_VIDEO_FILE_TYPE2) 
+            || (fileType >= FIRST_VIDEO_FILE_TYPE2 &&
+		fileType <= FILE_VIDEO_FILE_TYPE_AW); 
     }
 
     public static boolean isImageFileType(int fileType) {
