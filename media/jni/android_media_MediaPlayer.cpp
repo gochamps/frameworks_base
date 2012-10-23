@@ -21,7 +21,6 @@
 
 #include <media/mediaplayer.h>
 #include <media/MediaPlayerInterface.h>
-#include "IMediaPlayerService.h"
 #include <stdio.h>
 #include <assert.h>
 #include <limits.h>
