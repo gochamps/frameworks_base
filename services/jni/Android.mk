@@ -25,6 +25,8 @@ LOCAL_SRC_FILES:= \
 ifeq ($(TARGET_BOARD_PLATFORM),exDroid)
 LOCAL_SRC_FILES+= \
     com_android_server_DisplayManagerService.cpp 
+LOCAL_C_INCLUDES += \
+    frameworks/native/services/surfaceflinger/DisplayHardware
 endif
 
 LOCAL_C_INCLUDES += \
