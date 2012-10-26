@@ -1,10 +1,6 @@
 LOCAL_PATH:= $(call my-dir)
 include $(CLEAR_VARS)
 
-ifeq ($(TARGET_BOARD_PLATFORM),exDroid)
-LOCAL_CFLAGS += -DALLWINNER 
-endif
-
 LOCAL_SRC_FILES:= \
     com_android_server_AlarmManagerService.cpp \
     com_android_server_BatteryService.cpp \
@@ -61,6 +57,10 @@ endif
 
 ifeq ($(TARGET_HAS_DOCK_BATTERY),true)
     LOCAL_CFLAGS += -DHAS_DOCK_BATTERY
+endif
+
+ifeq ($(TARGET_BOARD_PLATFORM),exDroid)
+LOCAL_CFLAGS += -DALLWINNER
 endif
 
 LOCAL_MODULE:= libandroid_servers

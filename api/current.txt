@@ -23132,7 +23132,6 @@ package android.view {
     method public deprecated int getWidth();
     field public static final int DEFAULT_DISPLAY = 0; // 0x0
   }
-#ifdef ALLWINNER
   public class DisplayManager {
     ctor public DisplayManager();
     method public int closeDisplay(int);
@@ -23208,7 +23207,6 @@ package android.view {
     field public static final java.lang.String EXTRA_HDMISTATUS = "hdmistatus";
     field public static final java.lang.String EXTRA_TVSTATUS = "tvdacstatus";
 }
-#endif
   public class DragEvent implements android.os.Parcelable {
     method public int describeContents();
     method public int getAction();
