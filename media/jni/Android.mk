@@ -1,6 +1,10 @@
 LOCAL_PATH:= $(call my-dir)
 include $(CLEAR_VARS)
 
+ifeq ($(TARGET_BOARD_PLATFORM),exDroid)
+LOCAL_CFLAGS += -DALLWINNER
+endif
+
 LOCAL_SRC_FILES:= \
     android_media_MediaCrypto.cpp \
     android_media_MediaCodec.cpp \
@@ -64,10 +68,6 @@ LOCAL_C_INCLUDES += \
 LOCAL_CFLAGS +=
 
 LOCAL_LDLIBS := -lpthread
-
-ifeq ($(TARGET_BOARD_PLATFORM),exDroid)
-LOCAL_CFLAGS += -DALLWINNER
-endif
 
 LOCAL_MODULE:= libmedia_jni
 
