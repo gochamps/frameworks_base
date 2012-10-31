@@ -1,6 +1,10 @@
 LOCAL_PATH:= $(call my-dir)
 include $(CLEAR_VARS)
 
+ifeq ($(TARGET_BOARD_PLATFORM),exDroid)
+LOCAL_CFLAGS += -DALLWINNER
+endif
+
 # Only build libhwui when USE_OPENGL_RENDERER is
 # defined in the current device/board configuration
 ifeq ($(USE_OPENGL_RENDERER),true)
