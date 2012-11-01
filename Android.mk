@@ -43,7 +43,7 @@ SECONDARY_FRAMEWORKS_SUBDIRS := \
 include $(CLEAR_VARS)
 
 ifeq ($(TARGET_BOARD_PLATFORM),exDroid)
-LOCAL_CFLAGS += -DALLWINNER 
+	LOCAL_CFLAGS += -DALLWINNER 
 endif
 
 # FRAMEWORKS_BASE_SUBDIRS comes from build/core/pathmap.mk
