@@ -552,14 +552,16 @@ public class MediaPlayer
        {@hide}
      */
     public static final boolean BYPASS_METADATA_FILTER = false;
-
+    
+    /* add by Gary. start {{----------------------------------- */
     /**
     *  screen name (ALLWINNER PATCH)
     */
-    private IWindowManager   mWindowManager;
-    private IPackageManager   mPackageManager;
+    private IWindowManager 	mWindowManager;
+    private IPackageManager 	mPackageManager;
     public static final int MASTER_SCREEN = 0;
     public static final int SLAVE_SCREEN  = 1;
+    /* add by Gary. end   -----------------------------------}} */
 
     static {
         System.loadLibrary("media_jni");
@@ -2439,10 +2441,15 @@ public class MediaPlayer
                 mode == VIDEO_SCALING_MODE_SCALE_TO_FIT_WITH_CROPPING);
     }
     
+    /* add by Gary. start {{----------------------------------- */
     public static native void setScreen(int screen) throws IllegalStateException;
     public static native int  getScreen();
     public static native boolean  isPlayingVideo();
+    /* add by Gary. end   -----------------------------------}} */
 
+    /* add by Gary. start {{----------------------------------- */
+    /* 2011-9-13 9:50:50 */
+    /* expend interfaces about subtitle, track and so on */
     public static final int SUBTITLE_TYPE_TEXT = 0;
     public static final int SUBTITLE_TYPE_BITMAP = 1;
 
@@ -2841,6 +2848,11 @@ public class MediaPlayer
      */
     public native int getAudioSampleRate();
 
+    /* add by Gary. end   -----------------------------------}} */
+    
+    /* add by Gary. start {{----------------------------------- */
+    /* 2011-10-9 8:54:30 */
+    /* add callback for parsing 3d source */
     private OnParse3dFileListener mOnParse3dFileListener = null;
 
     public void setOnParse3dFileListener(OnParse3dFileListener listener){
@@ -2863,7 +2875,11 @@ public class MediaPlayer
 
         return 0;
     }
-
+    /* add by Gary. end   -----------------------------------}} */
+    
+    /* add by Gary. start {{----------------------------------- */
+    /* 2011-11-14 */
+    /* support scale mode */
     /**
      * enable or disable scale mode for playing video.
      * <p>
@@ -2873,7 +2889,11 @@ public class MediaPlayer
 	 * @param height  the expected height of the video. Only valid when enable.
      */
     public native void enableScaleMode(boolean enable, int width, int height);
+    /* add by Gary. end   -----------------------------------}} */
 
+    /* add by Gary. start {{----------------------------------- */
+    /* 2011-11-14 */
+    /* support adjusting colors while playing video */
     /**
      * enable or disable VPP for playing video.
      * <p>
@@ -2958,5 +2978,6 @@ public class MediaPlayer
      * @return the value of the black extended.
      */
     public static native int getBlackExtend();
-
+        
+    /* add by Gary. end   -----------------------------------}} */
 }

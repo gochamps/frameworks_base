@@ -1802,7 +1802,6 @@ public class Intent implements Parcelable, Cloneable {
      */
     @SdkConstant(SdkConstantType.BROADCAST_INTENT_ACTION)
     public static final String ACTION_SHUTDOWN = "android.intent.action.ACTION_SHUTDOWN";
-
 /**
      * Broadcast Action:  HDMI Hotplug Changed.
      * This is broadcast when the hdmi hotplug status (completely turned

@@ -76,9 +76,11 @@ public class MediaFile {
     public static final int FILE_TYPE_MP2PS   = 200;
     public static final int FILE_TYPE_CEDARV  = 201;
     private static final int FIRST_VIDEO_FILE_TYPE2 = FILE_TYPE_MP2PS;
+    private static final int LAST_VIDEO_FILE_TYPE2 = FILE_TYPE_CEDARV;
+    private static final int FILE_VIDEO_FILE_TYPE_AW = FILE_TYPE_MP2PS;
+
+    // More audio file types
     private static final int FILE_TYPE_CEDARA = 300;
-    private static final int FILE_VIDEO_FILE_TYPE_AW = FILE_TYPE_CEDARV;
-    private static final int LAST_VIDEO_FILE_TYPE2 = FILE_TYPE_MP2PS;
 
     // Image file types
     public static final int FILE_TYPE_JPEG    = 31;
