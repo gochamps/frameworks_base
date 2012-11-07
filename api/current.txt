@@ -18696,6 +18696,7 @@ package android.provider {
     field public static final java.lang.String FONT_SCALE = "font_scale";
     field public static final java.lang.String FORCE_DUAL_PANEL = "force_dualpanel";
     field public static final java.lang.String HAPTIC_FEEDBACK_ENABLED = "haptic_feedback_enabled";
+    field public static final java.lang.String HAPTIC_FEEDBACK_TOGGLES_ENABLED = "haptic_feedback_toggles_enabled";
     field public static final java.lang.String HIDE_EXTRAS_SYSTEM_BAR = "hide_extras_system_bar";
     field public static final deprecated java.lang.String HTTP_PROXY = "http_proxy";
     field public static final deprecated java.lang.String INSTALL_NON_MARKET_APPS = "install_non_market_apps";
@@ -23132,6 +23133,7 @@ package android.view {
     method public deprecated int getWidth();
     field public static final int DEFAULT_DISPLAY = 0; // 0x0
   }
+
   public class DisplayManager {
     ctor public DisplayManager();
     method public int closeDisplay(int);
@@ -23206,7 +23208,8 @@ package android.view {
     field public static final int DISPLAY_VGA_H800_V600 = 28; // 0x1c
     field public static final java.lang.String EXTRA_HDMISTATUS = "hdmistatus";
     field public static final java.lang.String EXTRA_TVSTATUS = "tvdacstatus";
-}
+  }
+
   public class DragEvent implements android.os.Parcelable {
     method public int describeContents();
     method public int getAction();
