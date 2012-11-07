@@ -25,6 +25,7 @@ import android.app.ActivityManager;
 import android.content.ActivityNotFoundException;
 import android.app.ActivityManagerNative;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
@@ -163,8 +164,10 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         mKeyguardShowing = keyguardShowing;
         mDeviceProvisioned = isDeviceProvisioned;
         if (mDialog != null) {
-            mDialog.hide();
-            mDialog.cancel();
+            if (mUiContext != null) {
+                mUiContext = null;
+            }
+            mDialog.dismiss();
             mDialog = null;
             // Show delayed, so that the dismiss of the previous dialog completes
             mHandler.sendEmptyMessage(MESSAGE_SHOW);
@@ -266,11 +269,6 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
                     mWindowManagerFuncs.shutdown();
                 }
 
-                public boolean onLongPress() {
-                    mWindowManagerFuncs.rebootSafeMode();
-                    return true;
-                }
-
                 public boolean showDuringKeyguard() {
                     return true;
                 }
@@ -282,23 +280,22 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
 
         // next: reboot
         mItems.add(
-                new SinglePressAction(
-                        com.android.internal.R.drawable.ic_lock_reboot,
-                        com.android.internal.R.string.reboot) {
+                new SinglePressAction(R.drawable.ic_lock_reboot, R.string.global_action_reboot) {
+                    public void onPress() {
+                        mWindowManagerFuncs.reboot();
+                    }
 
-                    @Override
+                    public boolean onLongPress() {
+                        mWindowManagerFuncs.rebootSafeMode();
+                        return true;
+                    }
+
                     public boolean showDuringKeyguard() {
                         return true;
                     }
 
-                    @Override
                     public boolean showBeforeProvisioning() {
                         return true;
-                    }
-
-                    @Override
-                    public void onPress() {
-                        createRebootDialog().show();
                     }
                 });
 
@@ -492,6 +489,9 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         } else {
             mDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_DIALOG);
         }
+
+        mDialog.setTitle(R.string.global_actions);
+
         if (SHOW_SILENT_TOGGLE) {
             IntentFilter filter = new IntentFilter(AudioManager.RINGER_MODE_CHANGED_ACTION);
             mContext.registerReceiver(mRingerModeReceiver, filter);
@@ -654,8 +654,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
             return false;
         }
 
-        public View create(
-                Context context, View convertView, ViewGroup parent, LayoutInflater inflater) {
+        public View create(Context context, View convertView, ViewGroup parent, LayoutInflater inflater) {
             View v = inflater.inflate(R.layout.global_actions_item, parent, false);
 
             ImageView icon = (ImageView) v.findViewById(R.id.icon);
@@ -1129,45 +1128,5 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
             mIWindowManager = IWindowManager.Stub.asInterface(b);
         }
         return mIWindowManager;
-    }
-
-    private AlertDialog createRebootDialog() {
-        final String[] rebootOptions = mContext.getResources().getStringArray(R.array.reboot_options);
-        final String[] rebootReasons = mContext.getResources().getStringArray(R.array.reboot_values);
-
-        AlertDialog d = new AlertDialog.Builder(getUiContext())
-                .setSingleChoiceItems(rebootOptions, 0,
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                rebootIndex = which;
-                            }
-                        })
-                .setNegativeButton(android.R.string.cancel,
-                        new DialogInterface.OnClickListener() {
-
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        })
-                .setPositiveButton(R.string.reboot, new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        mWindowManagerFuncs.reboot(rebootReasons[rebootIndex]);
-                    }
-                })
-                .setCancelable(false)
-                .create();
-
-        d.getListView().setItemsCanFocus(true);
-        if (mKeyguardShowing) {
-            d.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD_DIALOG);
-        } else {
-            d.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_DIALOG);
-        }
-
-        return d;
     }
 }

@@ -1210,8 +1210,6 @@
   <java-symbol type="array" name="lockscreen_targets_when_silent" />
   <java-symbol type="array" name="lockscreen_targets_when_soundon" />
   <java-symbol type="array" name="lockscreen_targets_with_camera" />
-  <java-symbol type="array" name="reboot_options" />
-  <java-symbol type="array" name="reboot_values" />
   <java-symbol type="attr" name="actionModePopupWindowStyle" />
   <java-symbol type="attr" name="dialogCustomTitleDecorLayout" />
   <java-symbol type="attr" name="dialogTitleDecorLayout" />
@@ -3755,7 +3753,7 @@
   <java-symbol type="bool" name="config_samsung_stk" />
 
   <java-symbol type="bool" name="config_isTegra3" />
-
+  
 <!-- AVRCP 1.3 Meta Data Resources -->
 
   <java-symbol type="array" name="avrcp_meta_changed_intents" />
@@ -3797,8 +3795,16 @@
   <java-symbol type="id" name="navbarmenu" />
 
   <!-- Power Menu -->
+  <java-symbol type="string" name="global_action_screenshot" />
+  <java-symbol type="string" name="global_action_reboot" />
+  <java-symbol type="string" name="global_actions" />
+  <java-symbol type="string" name="reboot_system" />
+  <java-symbol type="string" name="reboot_progress" />
+  <java-symbol type="array" name="shutdown_reboot_options" />
+  <java-symbol type="array" name="shutdown_reboot_actions" />
   <java-symbol type="drawable" name="ic_lock_screenshot" />
   <java-symbol type="string" name="global_action_screenshot" />
+  <java-symbol type="drawable" name="ic_lock_reboot" />
 
   <!-- Lockscreen Music Layout -->
   <java-symbol type="id" name="album_aokp" />
